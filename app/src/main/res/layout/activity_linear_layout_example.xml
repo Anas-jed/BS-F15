@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LinearLayoutExample">
+    android:padding="8dp"
+    tools:context=".RelativeLayoutExampleActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Email" />
+
+    <EditText android:id="@+id/inputEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label" />
+
+    <Button android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inputEmail"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="10px"
+        android:text="Login" />
+
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancel"
+        android:layout_toRightOf="@id/login"
+        android:layout_alignTop="@id/login"
+        android:text="Cancel" />
+
+    <Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/register"
+        android:layout_alignParentBottom="true"
+        android:text="Register new Account"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

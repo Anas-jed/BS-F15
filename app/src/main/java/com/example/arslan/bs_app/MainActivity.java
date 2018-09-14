@@ -1,5 +1,6 @@
 package com.example.arslan.bs_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,21 +11,27 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    // views
+    // views reference
     private TextView titleTextView;
-    private Button addButton ,clearButton;
+    private Button addButton ,clearButton ,openCalculatorActivity;
     private EditText inputEditText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //calling method of super class
         super.onCreate(savedInstanceState);
+        // set View for for Activity
         setContentView(R.layout.activity_main);
 
+        // initializing the views refernce with views object from xml
         titleTextView= findViewById(R.id.title);
         addButton= findViewById(R.id.add);
         clearButton= findViewById(R.id.clear);
         inputEditText =findViewById(R.id.input);
+        openCalculatorActivity =findViewById(R.id.openCalculator);
 
+
+        // click listener for button
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this , "Enter Text" , Toast.LENGTH_SHORT).show();
                     return;
                 }
-
 
                 if(inputEditText != null){
                     if(titleTextView !=null){
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // click listener for button
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,12 +75,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        openCalculatorActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(MainActivity.this , CalculatorActivity.class));
+            }
+        });
+
+
+
     }//end of onCreate
-
-    public void addbutton(View view){
-
-    }
-
-
 
 }
