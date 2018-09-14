@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,24 +29,51 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if(inputEditText.getText().toString().trim().length() == 0){
+                    Toast.makeText(MainActivity.this , "Enter Text" , Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 if(inputEditText != null){
                     if(titleTextView !=null){
                         titleTextView.setText(inputEditText.getText().toString());
                     }
                 }
+
             }
         });
 
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(inputEditText.getText().toString().trim().length() == 0){
+
+                    if(titleTextView.getText().toString().length() != 0){
+                        titleTextView.setText("");
+                    }
+
+                    Toast.makeText(MainActivity.this , "No Text To Clear" , Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(titleTextView !=null){
                     titleTextView.setText("");
+                }
+
+                if(inputEditText != null){
+                    inputEditText.setText("");
                 }
             }
         });
 
     }//end of onCreate
+
+    public void addbutton(View view){
+
+    }
+
 
 
 }
