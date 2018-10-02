@@ -14,13 +14,15 @@
         </activity>
         <activity android:name=".RelativeLayoutExampleActivity" />
         <activity android:name=".CalculatorActivity" />
-        <activity android:name=".ActivityLifeCycle"></activity>
-        <activity android:name=".ListExample">
+        <activity android:name=".ActivityLifeCycle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ListExample">
+
         </activity>
     </application>
 

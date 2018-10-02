@@ -4,24 +4,39 @@ import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class ActivityLifeCycle extends AppCompatActivity {
+public class ActivityLifeCycle extends AppCompatActivity implements View.OnClickListener {
 
     private final String lifeCycle = "LifeCycle of Activity";
-    private TextView myNameTextView;
+    private final String STATE_COUNTER = "counter";
+
+    private TextView counterTextView;
+    private Button incrementButton;
+    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_life_cycle);
+
+        counterTextView = findViewById(R.id.count_text_view);
+        incrementButton= findViewById(R.id.counter_button);
+
         // logging method when called
         Log.d(lifeCycle , "onCreate");
 
         if(savedInstanceState != null){
-            myNameTextView = new TextView(this);
-            myNameTextView.setText("Welcome");
-            setContentView(myNameTextView);
+            //counter = savedInstanceState.getInt(STATE_COUNTER);
+            //counterTextView.setText(Integer.toString(counter));
+
+        }else{
+            counterTextView.setText(Integer.toString(counter));
         }
+
+        incrementButton.setOnClickListener(this);
 
     }
 
@@ -55,4 +70,35 @@ public class ActivityLifeCycle extends AppCompatActivity {
         Log.d(lifeCycle , "onDestroy");
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(lifeCycle , "onRestart");
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.counter_button:
+                counter++;
+                counterTextView.setText(Integer.toString(counter));
+                break;
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+
+        // Save the user's current game state
+        outState.putInt(STATE_COUNTER, counter);
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        counter = savedInstanceState.getInt(STATE_COUNTER);
+        counterTextView.setText(Integer.toString(counter));
+    }
 }
