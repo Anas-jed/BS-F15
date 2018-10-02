@@ -2,6 +2,7 @@ package com.example.arslan.bs_app;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,9 +23,12 @@ public class CalculatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
+        String name = getIntent().getStringExtra("first");
+        Log.d(CalculatorActivity.class.getCanonicalName(),name);
+
         // Retrieve a reference to the EditText field for displaying the result.
         txtResult = findViewById(R.id.txtResultId);
-        txtResult.setText("0");
+        txtResult.setText(name);
 
         // Register listener (this class) for all the buttons
         BtnListener listener = new BtnListener();

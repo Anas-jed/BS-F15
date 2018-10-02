@@ -1,8 +1,10 @@
 package com.example.arslan.bs_app;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     // views reference
     private TextView titleTextView;
-    private Button addButton ,clearButton ,openCalculatorActivity;
+    private Button addButton, clearButton, openCalculatorActivity;
     private EditText inputEditText;
 
     @Override
@@ -24,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // initializing the views refernce with views object from xml
-        titleTextView= findViewById(R.id.title);
-        addButton= findViewById(R.id.add);
-        clearButton= findViewById(R.id.clear);
-        inputEditText =findViewById(R.id.input);
-        openCalculatorActivity =findViewById(R.id.openCalculator);
+        titleTextView = findViewById(R.id.title);
+        addButton = findViewById(R.id.add);
+        clearButton = findViewById(R.id.clear);
+        inputEditText = findViewById(R.id.input);
+        openCalculatorActivity = findViewById(R.id.openCalculator);
 
 
         // click listener for button
@@ -36,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(inputEditText.getText().toString().trim().length() == 0){
-                    Toast.makeText(MainActivity.this , "Enter Text" , Toast.LENGTH_SHORT).show();
+                if (inputEditText.getText().toString().trim().length() == 0) {
+                    Toast.makeText(MainActivity.this, "Enter Text", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(inputEditText != null){
-                    if(titleTextView !=null){
+                if (inputEditText != null) {
+                    if (titleTextView != null) {
                         titleTextView.setText(inputEditText.getText().toString());
                     }
                 }
@@ -55,21 +57,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(inputEditText.getText().toString().trim().length() == 0){
+                if (inputEditText.getText().toString().trim().length() == 0) {
 
-                    if(titleTextView.getText().toString().length() != 0){
+                    if (titleTextView.getText().toString().length() != 0) {
                         titleTextView.setText("");
                     }
 
-                    Toast.makeText(MainActivity.this , "No Text To Clear" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "No Text To Clear", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(titleTextView !=null){
+                if (titleTextView != null) {
                     titleTextView.setText("");
                 }
 
-                if(inputEditText != null){
+                if (inputEditText != null) {
                     inputEditText.setText("");
                 }
             }
@@ -79,12 +81,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(MainActivity.this , CalculatorActivity.class));
+                Intent mIntent = new Intent(MainActivity.this, CalculatorActivity.class);
+                mIntent.putExtra("first" , "Hello");
+                Log.d(MainActivity.class.getCanonicalName(),"logger 1");
+                startActivity(mIntent);
             }
         });
 
 
-
     }//end of onCreate
+
+    public void openDialer() {
+        Uri number = Uri.parse("tel:5551234");
+        Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+
+//        // Map point based on address
+//        Uri location = Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
+//        // Or map point based on latitude/longitude
+//        // Uri location = Uri.parse("geo:37.422219,-122.08364?z=14"); // z param is zoom level
+//        Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+//
+//        Uri webpage = Uri.parse("http://www.android.com");
+//        Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+    }//end
 
 }
