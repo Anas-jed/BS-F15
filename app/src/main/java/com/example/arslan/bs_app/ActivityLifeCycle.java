@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class ActivityLifeCycle extends AppCompatActivity implements View.OnClickListener {
 
-    private final String lifeCycle = "LifeCycle of Activity";
+    private final String lifeCycle = "LifeCycle of Activity:";
     private final String STATE_COUNTER = "counter";
 
     private TextView counterTextView;
@@ -100,5 +100,10 @@ public class ActivityLifeCycle extends AppCompatActivity implements View.OnClick
         super.onRestoreInstanceState(savedInstanceState);
         counter = savedInstanceState.getInt(STATE_COUNTER);
         counterTextView.setText(Integer.toString(counter));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
