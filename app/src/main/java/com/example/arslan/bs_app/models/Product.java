@@ -1,6 +1,8 @@
 package com.example.arslan.bs_app.models;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     private long id;
     private String name;

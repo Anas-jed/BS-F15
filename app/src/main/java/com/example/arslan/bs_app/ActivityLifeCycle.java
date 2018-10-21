@@ -29,14 +29,15 @@ public class ActivityLifeCycle extends AppCompatActivity implements View.OnClick
         Log.d(lifeCycle , "onCreate");
 
         if(savedInstanceState != null){
-            //counter = savedInstanceState.getInt(STATE_COUNTER);
-            //counterTextView.setText(Integer.toString(counter));
+            counter = savedInstanceState.getInt(STATE_COUNTER);
+            counterTextView.setText(Integer.toString(counter));
 
         }else{
             counterTextView.setText(Integer.toString(counter));
         }
 
         incrementButton.setOnClickListener(this);
+     //   finish();
 
     }
 
@@ -97,6 +98,7 @@ public class ActivityLifeCycle extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
+
         super.onRestoreInstanceState(savedInstanceState);
         counter = savedInstanceState.getInt(STATE_COUNTER);
         counterTextView.setText(Integer.toString(counter));
@@ -104,6 +106,7 @@ public class ActivityLifeCycle extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
+        finish();
     }
 }
