@@ -56,7 +56,7 @@ public class ProductFragment extends Fragment {
 
         Product product[] = new Product[10];
 
-        product[0] = new Product(10, "Cloths", "buys the bata shoes", 34);
+        product[0] = new Product(10, "Cloths", "Aaaaaaaaaaaaaaaaaaaaaa\nsasasas\nasasasa", 34);
         product[1] = new Product(10, "Electronics", "buys the bata shoes", 99);
         product[2] = new Product(10, "Books", "buys the bata shoes", 100);
         product[3] = new Product(10, "Kids Books", "buys the bata shoes", 33);
